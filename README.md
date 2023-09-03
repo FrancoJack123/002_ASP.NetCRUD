@@ -3,7 +3,7 @@ Proyecto trabajado con ASP.NET FRAMEWORK utilizando las librerías de JQuery y E
 ---
 ## Descripción
 
-JavaWebCRUD es una aplicación de gestión que permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) en una base de datos MySQL. Este proyecto está desarrollado utilizando los siguientes lenguajes y tecnologías:
+ASP.NetCRUD es una aplicación de gestión que permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) en una base de datos SQL. Este proyecto está desarrollado utilizando los siguientes lenguajes y tecnologías:
       <div>
         <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
         <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-plain-wordmark.svg"  title="CSS3" alt="CSS" width="40" height="40"/>&nbsp;
@@ -15,7 +15,7 @@ JavaWebCRUD es una aplicación de gestión que permite realizar operaciones CRUD
         <img src="https://github.com/devicons/devicon/blob/master/icons/apache/apache-original-wordmark.svg" title="MySQL"  alt="MySQL" width="40" height="40"/>&nbsp;
       </div>
 
-Para el desarrollo y despliegue, se recomienda el uso de [NetBeans](https://netbeans.org/) y [Apache Tomcat](https://tomcat.apache.org/) (versión 9).
+Para el desarrollo y despliegue, se recomienda el uso de [Visual Studio 2022](https://visualstudio.microsoft.com/es/).
 
 ---
 
@@ -29,11 +29,11 @@ Para el desarrollo y despliegue, se recomienda el uso de [NetBeans](https://netb
 
 ## Instalación
 
-A continuación, se detallan los pasos para instalar y ejecutar la aplicación JavaWebCRUD en tu entorno local:
+A continuación, se detallan los pasos para instalar y ejecutar la aplicación ASP.NetCRUD en tu entorno local:
 
 1. Clona este repositorio en tu máquina local:
 
 ```bash
-git clone https://github.com/tu_usuario/JavaWebCRUD.git
-cd JavaWebCRUD
+git clone https://github.com/tu_usuario/ASP.NetCRUD.git
+cd ASP.NetCRUD
 
