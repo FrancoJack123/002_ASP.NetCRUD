@@ -21,7 +21,7 @@ Para el desarrollo y despliegue, se recomienda el uso de [Visual Studio 2022](ht
 
 ## Captura de Pantalla
 
-![Captura de pantalla](https://github.com/FrancoJack123/001_JavaWebCRUD/blob/master/MySQL/Captura.PNG)
+![Captura de pantalla](https://github.com/FrancoJack123/002_ASP.NetCRUD/blob/master/Captura.PNG)
 
 *En esta imagen se observa el diseño de nuestro CRUD*
 
