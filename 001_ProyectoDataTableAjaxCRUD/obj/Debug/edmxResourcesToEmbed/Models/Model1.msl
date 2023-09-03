@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PROYECT_CRUD_ASPModelStoreContainer" CdmEntityContainer="PROYECT_CRUD_ASPEntities2">
+    <EntitySetMapping Name="tb_categoria">
+      <EntityTypeMapping TypeName="PROYECT_CRUD_ASPModel.tb_categoria">
+        <MappingFragment StoreEntitySet="tb_categoria">
+          <ScalarProperty Name="cod_categoria" ColumnName="cod_categoria" />
+          <ScalarProperty Name="categoria_prod" ColumnName="categoria_prod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_producto">
+      <EntityTypeMapping TypeName="PROYECT_CRUD_ASPModel.tb_producto">
+        <MappingFragment StoreEntitySet="tb_producto">
+          <ScalarProperty Name="cod_producto" ColumnName="cod_producto" />
+          <ScalarProperty Name="cod_categoria" ColumnName="cod_categoria" />
+          <ScalarProperty Name="descrip_prod" ColumnName="descrip_prod" />
+          <ScalarProperty Name="stock" ColumnName="stock" />
+          <ScalarProperty Name="pventa" ColumnName="pventa" />
+          <ScalarProperty Name="fecha_venc" ColumnName="fecha_venc" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

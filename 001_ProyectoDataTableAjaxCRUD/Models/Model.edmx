@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PROYECT_CRUD_ASPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_categoria">
+          <Key>
+            <PropertyRef Name="cod_categoria" />
+          </Key>
+          <Property Name="cod_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoria_prod" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_producto">
+          <Key>
+            <PropertyRef Name="cod_producto" />
+          </Key>
+          <Property Name="cod_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cod_categoria" Type="int" Nullable="false" />
+          <Property Name="descrip_prod" Type="varchar" MaxLength="50" />
+          <Property Name="stock" Type="int" />
+          <Property Name="pventa" Type="float" />
+          <Property Name="fecha_venc" Type="date" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tb_produc__cod_c__267ABA7A">
+          <End Role="tb_categoria" Type="Self.tb_categoria" Multiplicity="1" />
+          <End Role="tb_producto" Type="Self.tb_producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_categoria">
+              <PropertyRef Name="cod_categoria" />
+            </Principal>
+            <Dependent Role="tb_producto">
+              <PropertyRef Name="cod_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PROYECT_CRUD_ASPModelStoreContainer">
+          <EntitySet Name="tb_categoria" EntityType="Self.tb_categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_producto" EntityType="Self.tb_producto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tb_produc__cod_c__267ABA7A" Association="Self.FK__tb_produc__cod_c__267ABA7A">
+            <End Role="tb_categoria" EntitySet="tb_categoria" />
+            <End Role="tb_producto" EntitySet="tb_producto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PROYECT_CRUD_ASPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_categoria">
+          <Key>
+            <PropertyRef Name="cod_categoria" />
+          </Key>
+          <Property Name="cod_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoria_prod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_producto" Relationship="Self.FK__tb_produc__cod_c__267ABA7A" FromRole="tb_categoria" ToRole="tb_producto" />
+        </EntityType>
+        <EntityType Name="tb_producto">
+          <Key>
+            <PropertyRef Name="cod_producto" />
+          </Key>
+          <Property Name="cod_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cod_categoria" Type="Int32" Nullable="false" />
+          <Property Name="descrip_prod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stock" Type="Int32" />
+          <Property Name="pventa" Type="Double" />
+          <Property Name="fecha_venc" Type="DateTime" Precision="0" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tb_categoria" Relationship="Self.FK__tb_produc__cod_c__267ABA7A" FromRole="tb_producto" ToRole="tb_categoria" />
+        </EntityType>
+        <Association Name="FK__tb_produc__cod_c__267ABA7A">
+          <End Role="tb_categoria" Type="Self.tb_categoria" Multiplicity="1" />
+          <End Role="tb_producto" Type="Self.tb_producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_categoria">
+              <PropertyRef Name="cod_categoria" />
+            </Principal>
+            <Dependent Role="tb_producto">
+              <PropertyRef Name="cod_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PROYECT_CRUD_ASPEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_categoria" EntityType="Self.tb_categoria" />
+          <EntitySet Name="tb_producto" EntityType="Self.tb_producto" />
+          <AssociationSet Name="FK__tb_produc__cod_c__267ABA7A" Association="Self.FK__tb_produc__cod_c__267ABA7A">
+            <End Role="tb_categoria" EntitySet="tb_categoria" />
+            <End Role="tb_producto" EntitySet="tb_producto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PROYECT_CRUD_ASPModelStoreContainer" CdmEntityContainer="PROYECT_CRUD_ASPEntities3">
+          <EntitySetMapping Name="tb_categoria">
+            <EntityTypeMapping TypeName="PROYECT_CRUD_ASPModel.tb_categoria">
+              <MappingFragment StoreEntitySet="tb_categoria">
+                <ScalarProperty Name="cod_categoria" ColumnName="cod_categoria" />
+                <ScalarProperty Name="categoria_prod" ColumnName="categoria_prod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_producto">
+            <EntityTypeMapping TypeName="PROYECT_CRUD_ASPModel.tb_producto">
+              <MappingFragment StoreEntitySet="tb_producto">
+                <ScalarProperty Name="cod_producto" ColumnName="cod_producto" />
+                <ScalarProperty Name="cod_categoria" ColumnName="cod_categoria" />
+                <ScalarProperty Name="descrip_prod" ColumnName="descrip_prod" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="pventa" ColumnName="pventa" />
+                <ScalarProperty Name="fecha_venc" ColumnName="fecha_venc" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

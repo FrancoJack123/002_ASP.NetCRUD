@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PROYECT_CRUD_ASPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tb_categoria">
+    <Key>
+      <PropertyRef Name="cod_categoria" />
+    </Key>
+    <Property Name="cod_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoria_prod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tb_producto" Relationship="Self.FK__tb_produc__cod_c__267ABA7A" FromRole="tb_categoria" ToRole="tb_producto" />
+  </EntityType>
+  <EntityType Name="tb_producto">
+    <Key>
+      <PropertyRef Name="cod_producto" />
+    </Key>
+    <Property Name="cod_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cod_categoria" Type="Int32" Nullable="false" />
+    <Property Name="descrip_prod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="stock" Type="Int32" />
+    <Property Name="pventa" Type="Double" />
+    <Property Name="fecha_venc" Type="DateTime" Precision="0" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tb_categoria" Relationship="Self.FK__tb_produc__cod_c__267ABA7A" FromRole="tb_producto" ToRole="tb_categoria" />
+  </EntityType>
+  <Association Name="FK__tb_produc__cod_c__267ABA7A">
+    <End Role="tb_categoria" Type="Self.tb_categoria" Multiplicity="1" />
+    <End Role="tb_producto" Type="Self.tb_producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_categoria">
+        <PropertyRef Name="cod_categoria" />
+      </Principal>
+      <Dependent Role="tb_producto">
+        <PropertyRef Name="cod_categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PROYECT_CRUD_ASPEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tb_categoria" EntityType="Self.tb_categoria" />
+    <EntitySet Name="tb_producto" EntityType="Self.tb_producto" />
+    <AssociationSet Name="FK__tb_produc__cod_c__267ABA7A" Association="Self.FK__tb_produc__cod_c__267ABA7A">
+      <End Role="tb_categoria" EntitySet="tb_categoria" />
+      <End Role="tb_producto" EntitySet="tb_producto" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

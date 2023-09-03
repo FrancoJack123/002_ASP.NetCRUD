@@ -1,0 +1,412 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fa-solid fa-table me-1"></i>
+        DataTable Example
+    </div>
+
+    <div class="card-body">
+        <table id="tbProductos" class="table table-bordered" style="width: 100%">
+            <thead class="table-light">
+                <tr>
+                    <th>#</th>
+                    <th>Categoria</th>
+                    <th>Nombre</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Fecha de Vencimiento</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tfoot class="table-light">
+                <tr>
+                    <th>#</th>
+                    <th>Categoria</th>
+                    <th>Nombre</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Fecha de Vencimiento</th>
+                    <th> </th>
+                </tr>
+            </tfoot>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal Agregar -->
+<div class="modal fade" id="agregarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" id="formAgregar">
+                    <div class="col-md-12">
+                        <label for="inputEmail4" class="form-label">Codigo</label>
+                        <input type="number" class="form-control" id="CodigoAgregar" placeholder="Autogenerado" disabled="">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="inputPassword4" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="NombreAgregar" placeholder="Escriba el nombre del producto">
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="inputPassword4" class="form-label">Categoria</label>
+                        <select class="form-select" aria-label="Default select example" id="cboCategoriaAgregar">
+                            <option selected disabled>Seleccione</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="inputCity" class="form-label">Fecha de vencimiento</label>
+                        <input type="date" class="form-control" id="FechaAgregar">
+                    </div>
+                    <div class="col-8">
+                        <label for="inputAddress2" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="PrecioAgregar" placeholder="Escriba el precio del producto">
+                    </div>
+                    <div class="col-4 mb-2">
+                        <label for="inputAddress" class="form-label">Stock</label>
+                        <input type="number" class="form-control" id="StockAgregar" placeholder="Escriba el stock">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #e9ecef; border: 1px solid #ced4da;">Cerrar</button>
+                <button type="button" onclick="AgregarProduct()" class="btn" style="background-color: #e9ecef; border: 1px solid #ced4da;">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Editar -->
+<div class="modal fade" id="editarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3">
+                    <div class="col-md-12">
+                        <label for="inputEmail4" class="form-label">Codigo</label>
+                        <input type="number" class="form-control" id="CodigoEditar" placeholder="" disabled>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="inputPassword4" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="NombreEditar" placeholder="Escriba el nombre del producto">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="inputPassword4" class="form-label">Categoria</label>
+                        <select class="form-select" aria-label="Default select example" id="cboCategoriaEditar">
+                            <option selected disabled>Seleccione</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="inputCity" class="form-label">Fecha de vencimiento</label>
+                        <input type="date" class="form-control" id="FechaEditar">
+                    </div>
+                    <div class="col-8">
+                        <label for="inputAddress2" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="PrecioEditar" placeholder="Escriba el precio del producto">
+                    </div>
+                    <div class="col-4 mb-2">
+                        <label for="inputAddress" class="form-label">Stock</label>
+                        <input type="number" class="form-control" id="StockEditar">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #e9ecef; border: 1px solid #ced4da;">Cerrar</button>
+                <button type="button" class="btn" onclick="EditarProducto()" style="background-color: #e9ecef; border: 1px solid #ced4da;">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Desactivar -->
+<div class="modal fade" id="desactivarModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Desactivar</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="codigoDesactivar">
+                <p>Estas seguro de desactivar este producto?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #e9ecef; border: 1px solid #ced4da;">Cerrar</button>
+                <button type="button" onclick="DesactivarProducto()" class="btn" style="background-color: #e9ecef; border: 1px solid #ced4da;">Desactivar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        var tableProducts;
+
+        $(document).ajaxStop(function () {
+            $("#tbody").LoadingOverlay("hide");
+        });
+
+        $(document).ready(function () {
+            tableProducts = $('#tbProductos').DataTable({
+                "ajax": {
+                    "url": "@Url.Action("listarProductos", "Persona")",
+                    "type": "GET",
+                    "datatype": "json",
+                    beforeSend: function (jqXHR, settings) {
+                        $("#tbody").LoadingOverlay("show");
+                    }
+                },
+                "columns": [
+                    { "data": "cod_producto" },
+                    { "data": "Categoria.categoria_prod" },
+                    { "data": "descrip_prod" },
+                    { "data": "stock" },
+                    { "data": "pventa" },
+                    {
+                        "data": "fecha_venc",
+                        "render": function (data) {
+                            var dateMillis = parseInt(data.substr(6));
+                            var formattedDate = new Date(dateMillis).toISOString().substring(0, 10);
+                            return formattedDate;
+                        }
+                    },
+                    {
+                        "data": "cod_producto",
+                        "render": function (data) {
+                            return `<div class="d-flex gap-3 justify-content-center">` +
+                                `<a id="miBoton" class="btn" onclick="abriModalEditar(` + data + `)" data-bs-toggle="modal" data-bs-target="#editarModal" style="background-color: #e9ecef; border: 1px solid #ced4da;">` +
+                                `<i class="fas fa-pen text-secondary"></i>` +
+                                `</a>` +
+                                `<a class="btn" onclick="abriModalDesactivar(` + data + `)" data-bs-toggle="modal" data-bs-target="#desactivarModal" style="background-color: #e9ecef; border: 1px solid #ced4da;">` +
+                                `<i class="fas fa-exclamation-circle text-secondary"></i>` +
+                                `</a></div>`;
+                        },
+                        "orderable": false,
+                        "searchable": false
+                    }
+                ],
+                pageLength: 10,
+                lengthChange: false,
+                responsive: true
+            });
+
+            $.ajax({
+                "url": "@Url.Action("ListarCategorias", "Persona")",
+                "type": "GET",
+                "dataType": "json",
+                success: function (data) {
+
+                    var cboEditar = $('#cboCategoriaEditar');
+                    $.each(data.listadoCategoria, function (index, item) {
+                        cboEditar.append($('<option>', {
+                            value: item.cod_categoria,
+                            text: item.categoria_prod
+                        }));
+                    });
+
+                    var cboAgregar = $('#cboCategoriaAgregar');
+                    $.each(data.listadoCategoria, function (index, item) {
+                        cboAgregar.append($('<option>', {
+                            value: item.cod_categoria,
+                            text: item.categoria_prod
+                        }));
+                    });
+                }
+            })
+
+
+            /* CODIGO DE PERSONALIZACION DE DATATABLE */
+
+            let divDataTAable = document.querySelector('.col-sm-12');
+            let divCrado = document.createElement('div');
+            divCrado.setAttribute('class', 'dataTables_length');
+            divCrado.setAttribute('id', 'datatablesSimple_length');
+
+            divDataTAable.appendChild(divCrado);
+
+            /*let rowContainer = document.querySelector('.dataTables_length');
+
+            let customButton = document.createElement('button');
+            customButton.innerHTML = 'Agregar';
+            customButton.setAttribute('type', 'button');
+            customButton.setAttribute('class', 'btn mb-2');
+            customButton.setAttribute('style', 'background-color: #e9ecef; border: 1px solid #ced4da;');
+            customButton.setAttribute('data-bs-toggle', 'modal');
+            customButton.setAttribute('data-bs-target', '#agregarModal');
+
+            rowContainer.appendChild(customButton);*/
+
+            /* Creamos el boton agregar y le ponemos en el div creado */
+            var rowContainer = document.querySelector('.dataTables_length');
+
+            var customButton = document.createElement('button');
+            customButton.innerHTML = 'Agregar';
+            customButton.setAttribute('type', 'button');
+            customButton.setAttribute('class', 'btn mb-2');
+            customButton.setAttribute('style', 'background-color: #e9ecef; border: 1px solid #ced4da;');
+            customButton.setAttribute('data-bs-toggle', 'modal');
+            customButton.setAttribute('data-bs-target', '#agregarModal');
+
+            rowContainer.appendChild(customButton);
+
+            /* Creamos el boton PDF y le ponemos en el div creado */
+            var rowContainer = document.querySelector('.dataTables_length');
+
+            var customButton = document.createElement('a');
+            customButton.innerHTML = '<i class="fas fa-file-pdf" style="color: #616161;"></i>';
+            customButton.setAttribute('type', 'button');
+            customButton.setAttribute('class', 'btn mb-2 ms-2');
+            customButton.setAttribute('href', 'Persona/GenerarPDF');
+            customButton.setAttribute('style', 'background-color: #e9ecef; border: 1px solid #ced4da;');
+
+            rowContainer.appendChild(customButton);
+
+            // Reemplazamos el diseño del buscador
+            const datatablesSimpleFilter = document.getElementById('tbProductos_filter');
+
+            const customSearch = `
+                <div class="input-group mb-3 justify-content-center justify-content-lg-end" style="flex-wrap: initial; width: 100% !important;"">
+                    <span class="input-group-text" id="basic-addon1">Search</span>
+                    <input type="text" class="form-control" id="custom-search-inputs">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-search" style="color: #6c757d;"></i></span>
+                </div>
+                `;
+
+            // Asiganamos la funcion de buscar al diseño del buscador modificado
+            datatablesSimpleFilter.innerHTML = customSearch;
+
+            const customSearchInput = document.getElementById('custom-search-inputs');
+
+            customSearchInput.addEventListener('keyup', function () {
+                const table = $('#tbProductos').DataTable();
+
+                const searchValue = this.value;
+
+                table.search(searchValue).draw();
+            });
+
+            /* FIN DEL CODIGO DE PERSONALIZACION DE DATATABLE*/
+
+        });
+
+        function abriModalEditar(idProducto) {
+            $('#CodigoEditar').val(idProducto);
+            $.ajax({
+                url: "@Url.Action("obtenerProducto","Persona")" + "?idProducto=" + idProducto,
+                type: "GET",
+                datatype: "json",
+                success: function (data) {
+                    console.log(data);
+                    $('#NombreEditar').val(data.descrip_prod);
+                    var dateMillis = parseInt(data.fecha_venc.substr(6));
+                    var formattedDate = new Date(dateMillis).toISOString().substring(0, 10);
+                    console.log(formattedDate);
+                    $('#FechaEditar').val(formattedDate);
+                    $('#cboCategoriaEditar').val(data.Categoria.cod_categoria);
+                    $('#PrecioEditar').val(data.pventa);
+                    $('#StockEditar').val(data.stock);
+                }
+           });
+        };
+
+        function abriModalDesactivar(idProducto) {
+            $('#codigoDesactivar').val(idProducto);
+        }
+
+        function EditarProducto(){
+            let $datas = {
+                Producto: {
+                    cod_producto: parseInt($('#CodigoEditar').val()),
+                    descrip_prod: $('#NombreEditar').val(),
+                    fecha_venc: new Date($('#FechaEditar').val()),
+                    cod_categoria: $('#cboCategoriaEditar').val(),
+                    pventa: parseFloat($('#PrecioEditar').val()),
+                    stock: parseInt($('#StockEditar').val())
+                }
+            }
+            $.ajax({
+                url: "@Url.Action("EditarProducto", "Persona")",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify($datas),
+                success: function (data) {
+                    alertify.success(data.message);
+                    tableProducts.ajax.reload(null, false);
+                }
+            });
+            $("#editarModal").modal('hide');
+        }
+
+        function AgregarProduct() {
+            let $data = {
+                Producto: {
+                    descrip_prod: $('#NombreAgregar').val(),
+                    fecha_venc: $('#FechaAgregar').val(),
+                    cod_categoria: $('#cboCategoriaAgregar').val(),
+                    pventa: parseFloat($('#PrecioAgregar').val()),
+                    stock: parseInt($('#StockAgregar').val())
+                }
+            };
+            $.ajax({
+                url: "@Url.Action("AgregarProducto", "Persona")",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify($data),
+                success: function (data) {
+                    console.log(data);
+                    alertify.success(data.message);
+                    tableProducts.ajax.reload();
+                    
+                }
+            });
+            $("#agregarModal").modal('hide');
+            $("#CodigoAgregar").val('');
+            $("#NombreAgregar").val('');
+            $("#StockAgregar").val('');
+            $("#PrecioAgregar").val('');
+            $("#FechaAgregar").val('');
+        }
+
+        function DesactivarProducto() {
+            let codigoProducto = $('#codigoDesactivar').val();
+            $.ajax({
+                url: "@Url.Action("DesactivarProducto", "Persona")" + "?cod_Producto=" + codigoProducto,
+                type: "GET",
+                datatype: "json",
+                success: function (data) {
+                    console.log(data);
+                    alertify.error(data.message);
+                    tableProducts.ajax.reload();
+                }
+            });
+            $("#desactivarModal").modal('hide');
+        }
+
+    </script>
+}
+
+
+
+
